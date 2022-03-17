@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.regiuss.client.controller.MainController">
+   <children>
+      <BorderPane fx:id="root" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" styleClass="bg-white">
+               <children>
+                  <StackPane fx:id="menu" maxHeight="24.0" maxWidth="24.0">
+                     <children>
+                        <Rectangle arcHeight="1.0" arcWidth="1.0" blendMode="SCREEN" fill="DODGERBLUE" height="24.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="24.0" />
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/menu.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" right="30.0" />
+                     </HBox.margin>
+                  </StackPane>
+                  <Text fill="#0065b1" strokeType="OUTSIDE" strokeWidth="0.0" text="#СТОП">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Text>
+                  <Text fill="#ee3f58" strokeType="OUTSIDE" strokeWidth="0.0" text="КОРОНАВИРУС">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font></Text>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <AnchorPane fx:id="sidePanel" maxHeight="1.7976931348623157E308" maxWidth="250.0" minHeight="70.0" minWidth="70.0" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="45.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.appointments" userData="appointments">
+                           <graphic>
+                              <StackPane blendMode="SRC_ATOP">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/appointments.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="20.0" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
+                                 </children>
+                              </StackPane>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="sideBarGroup" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <Separator prefWidth="200.0" />
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.users" toggleGroup="$sideBarGroup" userData="users">
+                           <graphic>
+                              <StackPane blendMode="SRC_ATOP">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/staff.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="20.0" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
+                                 </children>
+                              </StackPane>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.services" toggleGroup="$sideBarGroup" userData="services">
+                           <graphic>
+                              <StackPane blendMode="SRC_ATOP">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/services.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="20.0" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
+                                 </children>
+                              </StackPane>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.preparates" toggleGroup="$sideBarGroup" userData="preparates">
+                           <graphic>
+                              <StackPane blendMode="SRC_ATOP">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/preparates.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="20.0" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
+                                 </children>
+                              </StackPane>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.laboratories" toggleGroup="$sideBarGroup" userData="laboratories">
+                           <graphic>
+                              <StackPane blendMode="SRC_ATOP">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/laboratories.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SRC_ATOP" height="20.0" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
+                                 </children>
+                              </StackPane>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <Separator prefWidth="200.0" />
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" onAction="#onLangChange" text="%sideBar.lang">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/language.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.night">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/night.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton graphicTextGap="20.0" maxHeight="50.0" minHeight="50.0" mnemonicParsing="false" text="%sideBar.settings">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </ToggleButton>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <styleClass>
+                  <String fx:value="bg-white" />
+                  <String fx:value="sidePanel" />
+               </styleClass></AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../style/main.css" />
+      <URL value="@../style/white.css" />
+   </stylesheets>
+</AnchorPane>
