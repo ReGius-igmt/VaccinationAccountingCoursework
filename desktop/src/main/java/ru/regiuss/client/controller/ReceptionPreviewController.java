@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ru.regiuss.client.API;
@@ -38,7 +40,8 @@ public class ReceptionPreviewController {
 
         List<Medicine> medicines = API.getMedicines(reception.getService().getId());
         choiceBox.setItems(FXCollections.observableList(medicines));
-        choiceBox.getSelectionModel().select(0);
+        if(reception.getMedicine() == null)choiceBox.getSelectionModel().select(0);
+        else choiceBox.getSelectionModel().select(reception.getMedicine());
     }
 
     @FXML
@@ -51,7 +54,7 @@ public class ReceptionPreviewController {
         reception.setMedicine(choiceBox.getValue());
         reception.setStatus(2);
         API.saveReception(reception);
-        box.remove(reception);
+        if(reception.getDate().after(new Date(System.currentTimeMillis())))box.remove(reception);
         stage.close();
     }
 

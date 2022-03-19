@@ -3,16 +3,27 @@ package ru.regiuss.client.nodes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import ru.regiuss.client.model.Reception;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ReceptionCell extends ListCell<Reception> {
 
     private Reception reception;
+
+    @FXML
+    private ImageView img;
+
+    @FXML
+    private Rectangle colorBox;
 
     @FXML
     private Text id;
@@ -44,6 +55,20 @@ public class ReceptionCell extends ListCell<Reception> {
         this.name.setText(reception.getUser().getFullName());
         this.service.setText(reception.getService().getName());
         this.time.setText(new SimpleDateFormat("HH:mm").format(reception.getDate()));
+
+        if(reception.getDate().before(new Date(System.currentTimeMillis()))){
+            if(reception.getStatus() == 2){
+                img.setImage(new Image(getClass().getResourceAsStream("/img/success.png")));
+                colorBox.setFill(Paint.valueOf("#1BC300"));
+            }
+            else {
+                img.setImage(new Image(getClass().getResourceAsStream("/img/error.png")));
+                colorBox.setFill(Paint.valueOf("#EE3F58"));
+            }
+        }else {
+            img.setImage(new Image(getClass().getResourceAsStream("/img/clock.png")));
+            colorBox.setFill(Paint.valueOf("#FBE200"));
+        }
     }
 
     @Override

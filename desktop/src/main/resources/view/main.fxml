@@ -36,14 +36,14 @@
                         <Insets left="20.0" right="30.0" />
                      </HBox.margin>
                   </StackPane>
-                  <Text fill="#0065b1" strokeType="OUTSIDE" strokeWidth="0.0" text="#СТОП">
+                  <Text fill="#0065b1" strokeType="OUTSIDE" strokeWidth="0.0" text="%logo1">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Text>
-                  <Text fill="#ee3f58" strokeType="OUTSIDE" strokeWidth="0.0" text="КОРОНАВИРУС">
+                  <Text fill="#ee3f58" strokeType="OUTSIDE" strokeWidth="0.0" text="%logo2">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font></Text>

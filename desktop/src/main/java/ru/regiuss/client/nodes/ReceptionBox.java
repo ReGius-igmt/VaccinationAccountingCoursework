@@ -51,8 +51,8 @@ public class ReceptionBox extends VBox {
                 Reception selectedItem = itemsList.getSelectionModel().getSelectedItem();
                 if(selectedItem == null)return;
                 Stage stage = new Stage();
-                FXMLLoader loader1 = new FXMLLoader();
-                loader1.setLocation(getClass().getResource("/view/receptionPreview.fxml"));
+                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/view/receptionPreview.fxml"), ViewHandler.getInstance().getBundle());
+               // loader1.setLocation();
                 try {
                     Parent p = loader1.load();
                     ReceptionPreviewController controller = loader1.getController();
@@ -62,7 +62,7 @@ public class ReceptionBox extends VBox {
                     e.printStackTrace();
                 }
                 stage.setResizable(false);
-                stage.setTitle("Установка вакцины");
+                stage.setTitle(ViewHandler.getInstance().getBundle().getString("reception.header"));
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.initOwner(ViewHandler.getInstance().getStage().getOwner());
                 stage.show();
