@@ -3,24 +3,77 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.regiuss.client.controller.ReceptionPreviewController">
+<VBox maxHeight="600.0" minWidth="400.0" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.regiuss.client.controller.ReceptionPreviewController">
    <children>
-      <Text fx:id="userNameTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="userNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fx:id="serviceNameTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="serviceNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
+      <VBox>
+         <children>
+            <Label text="Статус:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="statusBox" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" prefWidth="150.0" />
+         </children>
+      </VBox>
+      <Label text="Препараты:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TilePane fx:id="medicinesBox" hgap="10.0" prefColumns="1" prefHeight="100.0" prefRows="1" tileAlignment="CENTER_LEFT" vgap="5.0" />
+      <VBox>
+         <children>
+            <Label text="Комментарий:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
+         </children>
+      </VBox>
+      <Label text="Файлы:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <StackPane style="-fx-border-style: dashed; -fx-background-color: #fff; -fx-border-color: #999; -fx-border-radius: 5;">
+         <children>
+            <TilePane fx:id="filesPane" prefHeight="200.0" style="-fx-border-style: dot;" />
+            <ImageView fitHeight="100.0" fitWidth="150.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/attachment.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </StackPane>
       <HBox alignment="CENTER_RIGHT" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#save" text="%save" />

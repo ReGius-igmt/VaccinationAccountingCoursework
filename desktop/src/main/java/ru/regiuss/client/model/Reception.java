@@ -1,10 +1,14 @@
 package ru.regiuss.client.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Reception {
     @JsonProperty("id")
     private Integer id;
@@ -16,8 +20,10 @@ public class Reception {
     private Integer status;
     @JsonProperty("date")
     private Date date;
-    @JsonProperty("medicine")
-    private Medicine medicine;
+    @JsonProperty("comment")
+    private String comment;
+    @JsonProperty("medicines")
+    private Set<Medicine> medicines;
 
     public Date getDate() {
         return date;
@@ -59,6 +65,22 @@ public class Reception {
         this.id = id;
     }
 
+    public Set<Medicine> getMedicines() {
+        return medicines;
+    }
+
+    public void setMedicines(Set<Medicine> medicines) {
+        this.medicines = medicines;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "Reception{" +
@@ -67,16 +89,7 @@ public class Reception {
                 ", service=" + service +
                 ", status=" + status +
                 ", date=" + date +
-                ", medicine=" + medicine +
                 '}';
-    }
-
-    public Medicine getMedicine() {
-        return medicine;
-    }
-
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
     }
 
 }

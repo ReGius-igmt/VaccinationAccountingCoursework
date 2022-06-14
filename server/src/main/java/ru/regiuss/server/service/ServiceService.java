@@ -1,13 +1,13 @@
 package ru.regiuss.server.service;
 
 import ru.regiuss.server.model.Service;
-import ru.regiuss.server.repository.ServoceRepository;
+import ru.regiuss.server.repository.ServiceRepository;
 
 @org.springframework.stereotype.Service
 public class ServiceService {
-    private final ServoceRepository repository;
+    private final ServiceRepository repository;
 
-    public ServiceService(ServoceRepository repository) {
+    public ServiceService(ServiceRepository repository) {
         this.repository = repository;
     }
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import ru.regiuss.server.Views;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "services")
@@ -19,23 +19,14 @@ public class Service {
     @JsonView(Views.Simple.class)
     private String name;
 
-    @Column(name = "qr_e", nullable = false)
-    @JsonView(Views.Simple.class)
-    private Integer qrE;
-
-    @JsonView(Views.Full.class)
-    @JoinTable(name = "medicines_services", joinColumns = @JoinColumn(name = "service_id"),
-    inverseJoinColumns = @JoinColumn(name = "medicine_id"))
     @ManyToMany
-    private List<Medicine> medicines;
-
-    public Integer getQrE() {
-        return qrE;
-    }
-
-    public void setQrE(Integer qrE) {
-        this.qrE = qrE;
-    }
+    @JoinTable(
+            name = "medicines_services",
+            joinColumns = {@JoinColumn(name = "service_id")},
+            inverseJoinColumns = {@JoinColumn(name = "medicine_id")}
+    )
+    @JsonView(Views.Simple.class)
+    private Set<Medicine> medicines;
 
     public String getName() {
         return name;
@@ -53,11 +44,11 @@ public class Service {
         this.id = id;
     }
 
-    public List<Medicine> getMedicines() {
+    public Set<Medicine> getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(List<Medicine> medicines) {
+    public void setMedicines(Set<Medicine> medicines) {
         this.medicines = medicines;
     }
 }

@@ -5,6 +5,7 @@ import ru.regiuss.server.Views;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Set;
 
 @Entity
 @Table(name = "receptions")
@@ -22,7 +23,7 @@ public class Reception {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "laboratory_id", nullable = false)
-    @JsonView(Views.Full.class)
+    @JsonView(Views.Simple.class)
     private Laboratory laboratory;
 
     @ManyToOne(optional = false)
@@ -38,13 +39,26 @@ public class Reception {
     @JsonView(Views.Simple.class)
     private Instant date;
 
-    @ManyToOne
-    @JoinColumn(name = "medicine_id")
-    @JsonView(Views.Simple.class)
-    private Medicine medicine;
+    @Lob
+    @Column(name = "comment")
+    @JsonView(Views.Full.class)
+    private String comment;
 
-    public Medicine getMedicine() {
-        return medicine;
+    @ManyToMany
+    @JsonView(Views.Full.class)
+    @JoinTable(
+            name = "receptions_medicines",
+            joinColumns = {@JoinColumn(name = "reception_id")},
+            inverseJoinColumns = {@JoinColumn(name = "medicine_id")}
+    )
+    private Set<Medicine> medicines;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Instant getDate() {
@@ -95,20 +109,11 @@ public class Reception {
         this.id = id;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+    public Set<Medicine> getMedicines() {
+        return medicines;
     }
 
-    @Override
-    public String toString() {
-        return "Reception{" +
-                "id=" + id +
-                ", user=" + user +
-                ", laboratory=" + laboratory +
-                ", service=" + service +
-                ", status=" + status +
-                ", date=" + date +
-                ", medicine=" + medicine +
-                '}';
+    public void setMedicines(Set<Medicine> medicines) {
+        this.medicines = medicines;
     }
 }

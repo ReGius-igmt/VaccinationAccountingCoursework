@@ -26,6 +26,10 @@ public class Laboratory {
     @JsonView(Views.Simple.class)
     private String dNum;
 
+    @Column(name = "display_name", nullable = false, length = 45)
+    @JsonView(Views.Simple.class)
+    private String displayName;
+
     public String getDNum() {
         return dNum;
     }
@@ -56,5 +60,21 @@ public class Laboratory {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getdNum() {
+        return dNum;
+    }
+
+    public void setdNum(String dNum) {
+        this.dNum = dNum;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

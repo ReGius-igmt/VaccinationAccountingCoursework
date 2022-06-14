@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import ru.regiuss.server.Views;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,16 +40,35 @@ public class User {
     @JsonIgnore
     private String pass;
 
-//    @ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
-//    @Enumerated(EnumType.STRING)
-//    @CollectionTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"))
-//    //@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-//    @Column(name = "role", nullable = false)
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name="user_roles")
-    @Column(name="role")
-    private Set<Role> roles = new HashSet<Role>();
+    @Column(name = "login", nullable = false, length = 45)
+    @JsonView(Views.Full.class)
+    private String login;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    @JsonView(Views.Full.class)
+    private Set<Role> roles;
+
+    @ManyToMany
+    @JoinTable(
+            name = "staffs_laboratories",
+            joinColumns = {@JoinColumn(name = "staff_id")},
+            inverseJoinColumns = {@JoinColumn(name = "laboratory_id")}
+    )
+    @JsonView(Views.Full.class)
+    private Set<Laboratory> laboratories;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getPass() {
         return pass;
@@ -113,7 +130,7 @@ public class User {
         return roles;
     }
 
-    public void addRole(Role role){
-        roles.add(role);
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

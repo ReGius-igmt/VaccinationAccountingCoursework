@@ -1,36 +1,37 @@
-package ru.regiuss.server.repository;
+package ru.regiuss.server.repository.impl;
 
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import ru.regiuss.server.model.Role;
 import ru.regiuss.server.model.User;
+import ru.regiuss.server.repository.custom.UserRepositoryCustom;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UserRepositoryImpl implements UserRepositoryCustom{
+public class UserRepositoryImpl implements UserRepositoryCustom {
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public PageImpl<User> findAll(Pageable pageable, String sort, String role) {
+    public PageImpl<User> findAll(Pageable pageable, int[] laboratories) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<User> cr = cb.createQuery(User.class);
         Root<User> root = cr.from(User.class);
-        cr.select(root).where(userRoles(Role.get(role)).toPredicate(root, cr, cb));
+        cr.select(root);
         TypedQuery<User> query = em.createQuery(cr);
         query.setFirstResult(pageable.getPageSize() * pageable.getPageNumber());
         query.setMaxResults(pageable.getPageSize());
 
-
-        CriteriaQuery<Long> totalCQ = cb.createQuery(Long.class);
-        root = totalCQ.from(User.class);
-        totalCQ.select(cb.count(root)).where(userRoles(Role.get(role)).toPredicate(root, totalCQ, cb));
-        long total = em.createQuery(totalCQ).getSingleResult();
-        return new PageImpl<User>(query.getResultList(), pageable, total);
+        CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
+        countQuery.select(cb.count(countQuery.from(User.class)));
+        long total = em.createQuery(countQuery).getSingleResult();
+        return new PageImpl<>(query.getResultList(), pageable, total);
     }
 
     public static Specification<User> userRoles(Role role) {

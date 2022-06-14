@@ -4,24 +4,29 @@
     -fx-background-color: #fff;
 }
 
-Button,ToggleButton{
+ScrollPane{
+    -fx-background-color: transparent;
+    -fx-border: none;
+}
+
+.button,.toggle-button{
     -fx-background: transparent;
     -fx-background-color: transparent;
 }
 
-Button:hover,ToggleButton:hover, #menu:hover{
+.button:hover,.toggle-button:hover, #menu:hover{
     -fx-cursor: hand;
 }
 
-ToggleButton:selected{
+.toggle-button:selected{
     -fx-text-fill: #0065B1;
 }
 
-ToggleButton:selected Rectangle{
+.toggle-button:selected Rectangle{
     -fx-fill: #0065B1;
 }
 
-.min ToggleButton{
+.min .toggle-button{
     -fx-content-display: GRAPHIC-ONLY;
 }
 
@@ -43,4 +48,26 @@ ListView{
 
 .searchBox TextField{
     -fx-text-box-border: none;
+}
+
+.link_btn{
+    -fx-background-color: transparent;
+    -fx-text-fill: blue;
+    -fx-padding: 0;
+}
+
+.link_btn:hover{
+    -fx-underline: true;
+}
+
+.btn{
+    -fx-text-fill: #fff;
+}
+
+.btn: hover{
+    -fx-opacity: 0.8;
+}
+
+.btn-primary{
+    -fx-background-color: darkblue;
 }

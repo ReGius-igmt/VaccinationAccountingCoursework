@@ -1,17 +1,14 @@
 package ru.regiuss.client.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Objects;
+
 public class Medicine {
+    @JsonProperty("id")
     private Integer id;
+    @JsonProperty("name")
     private String name;
-    private Integer volume;
-
-    public Integer getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Integer volume) {
-        this.volume = volume;
-    }
 
     public String getName() {
         return name;
@@ -32,5 +29,18 @@ public class Medicine {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Medicine medicine = (Medicine) o;
+        return Objects.equals(id, medicine.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

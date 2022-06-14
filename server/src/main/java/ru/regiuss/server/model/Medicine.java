@@ -18,17 +18,6 @@ public class Medicine {
     @JsonView(Views.Simple.class)
     private String name;
 
-    @Column(name = "volume", nullable = false)
-    private Integer volume;
-
-    public Integer getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Integer volume) {
-        this.volume = volume;
-    }
-
     public String getName() {
         return name;
     }
